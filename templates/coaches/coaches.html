@@ -18,7 +18,7 @@
 
   </head>
 
-  <body>
+   <body>
 
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
@@ -35,27 +35,28 @@
           <ul class="nav navbar-nav">
             <li><a href="{% url 'students:students' %}">Студенты</a></li>
             <li><a href="{% url 'courses:courses' %}">Курсы</a></li>
-            <li><a href="{% url 'coaches:coaches' %}">Тренеры</a></li>
+            <li { class="active" }><a href="{% url 'coaches:coaches' %}">Тренеры</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
+      <h1>Тренеры PyBursa</h1>
+        <ol>
+        {% for coach in coaches %}
+          <li>
+            <a href="/coaches/{{ coach.id }}/">
+            {{ coach.surname }} {{ coach.name }}
+            </a>
+          </li>
+        {% endfor %}
+        </ol>
+      </div><!-- /.container -->
 
-      <div class="starter-template">
-        <h1>Главная страница</h1>
-        <p class="lead">Курсы по программированию</p>
-      </div>
-
-    </div><!-- /.container -->
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="jquery.min.js"></script>
-    <script src="bootstrap.min.js"></script>
-  
-
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="jquery.min.js"></script>
+<script src="bootstrap.min.js"></script>
 </body></html>

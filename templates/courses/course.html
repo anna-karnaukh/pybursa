@@ -42,14 +42,13 @@
     </nav>
 
     <div class="container">
-
-      <div class="starter-template">
-        <h1>Главная страница</h1>
-        <p class="lead">Курсы по программированию</p>
-      </div>
-
+      <h1>Курс: {{ course.get_technology_choice_display }}</h1>
+        <ul class="list-group">
+          <li class="list-group-item">Описание: {{ course.description }}</li>
+          <li class="list-group-item">Преподаватель: {{ course.teacher.surname }} {{ course.teacher.name }}</li>
+          <li class="list-group-item">Ассистент: {{ course.assistant.surname }} {{ course.assistant.name }}</li>
+        </ul>
     </div><!-- /.container -->
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

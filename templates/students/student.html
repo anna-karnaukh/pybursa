@@ -42,12 +42,13 @@
     </nav>
 
     <div class="container">
-
-      <div class="starter-template">
-        <h1>Главная страница</h1>
-        <p class="lead">Курсы по программированию</p>
-      </div>
-
+      <h1>Студент: {{ student.surname }} {{ student.name }}</h1>
+        <ul class="list-group">
+          <li class="list-group-item">Email: {{ student.email }}</li>
+          <li class="list-group-item">Телефон: {{ student.phone }}</li>
+          <li class="list-group-item">Пакет: {{ student.get_package_choice_display}}</li>
+          {# <li class="list-group-item">Рейтинг: 1</li> #}
+        </ul>
     </div><!-- /.container -->
 
 
