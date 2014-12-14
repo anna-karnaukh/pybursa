@@ -19,6 +19,7 @@ class Course(models.Model):
                                          choices=TECHNOLOGY_CHOICE, 
                                          default='P')
     venue = models.ForeignKey('students.Address', null=True, blank=True)
+    slug = models.SlugField(max_length=255, blank=True, default="")
 
     def __unicode__(self):
         return "%s" % self.get_technology_choice_display()
