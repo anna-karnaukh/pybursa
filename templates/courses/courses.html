@@ -1,48 +1,7 @@
-{% load static %}<!DOCTYPE html>
-<!-- saved from url=(0050)http://getbootstrap.com/examples/starter-template/ -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
+{% extends "courses/courses_base.html"%}
 
-    <title>Starter Template for Bootstrap</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="{% static "dist/css/bootstrap.min.css" %}" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="{% static "examples/starter-template.css" %}" rel="stylesheet">
-
-  </head>
-
-   <body>
-
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-     <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{% url 'home' %}">PyBursa</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="{% url 'students:students' %}">Студенты</a></li>
-            <li { class="active" }><a href="{% url 'courses:courses' %}">Курсы</a></li>
-            <li><a href="{% url 'coaches:coaches' %}">Тренеры</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-
-    <div class="container">
-      <h1>Список курсов</h1>
+{% block content %}
+{% include "h1.html" with page_name="Список курсов" %}
         <table class="table">
         <thead>
           <tr>
@@ -56,18 +15,14 @@
         {% for course in courses %}
           <tr>
             <td>{{ course.id }}</td>
-            <td><a href="/courses/{{ course.id }}/">{{ course.get_technology_choice_display }}</a></td>
+            <td><a href="{% url 'courses:course' course.id%}">
+              {{ course.get_technology_choice_display }}
+              </a>
+            </td>
             <td>{{ course.start_date }}</td>
             <td>{{ course.end_date }}</td>
           </tr>
         {% endfor %}
         </tbody>
         </table>
-      </div><!-- /.container -->
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="jquery.min.js"></script>
-<script src="bootstrap.min.js"></script>
-</body></html>
+{% endblock %}

@@ -15,4 +15,4 @@ class Coach(models.Model):
     dossier = models.OneToOneField('students.Dossier', blank=True, null=True)
     
     def __unicode__(self):
-        return "%s %s (%s)" %(self.name, self.surname, self.coach_type)
+        return "%s %s" %(self.name, self.surname)
