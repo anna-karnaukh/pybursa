@@ -1,0 +1,11 @@
+{% extends "students/students_base.html"%}
+{% block title %}Добавление или редактирование сущности{% endblock %}
+{% block content %}
+	{% include "h1.html" with page_name='Добавление студента' %}
+
+	<form method='post'>
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type='submit' />
+	</form>
+{% endblock %}

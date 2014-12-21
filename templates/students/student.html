@@ -8,4 +8,5 @@
           <li class="list-group-item">Пакет: {{ student.get_package_choice_display}}</li>
           {# <li class="list-group-item">Рейтинг: 1</li> #}
         </ul>
+        {% include "edit_delete_buttons.html" with edit_url="students:edit" delete_url="students:delete" item_id=student.id %}
 {% endblock %}

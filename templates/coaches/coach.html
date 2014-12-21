@@ -9,4 +9,5 @@
           <li class="list-group-item">Должность: {{ coach.get_coach_type_display }}</li>
           <li class="list-group-item">Курс: {{ coach.course_name }}</li>
         </ul>
+        {% include "edit_delete_buttons.html" with edit_url="coaches:edit" delete_url="coaches:delete" item_id=coach.id %}
 {% endblock %}
