@@ -1,11 +1,11 @@
 from django.conf.urls import patterns, include, url
-from coaches.views import coaches_list, coaches_item, coach_edit, coach_add, coach_delete
+from coaches.views import (CoachList, CoachDetail, CoachUpdate, CoachCreate, CoachDelete)
 
 
 urlpatterns = patterns('',
-    url(r'^$', coaches_list, name='coaches'),
-    url(r'^(?P<coach_id>\d+)/$', coaches_item, name='coach'),
-    url(r'^(?P<coach_id>\d+)/edit/$', coach_edit, name="edit"),
-    url(r'^add/$', coach_add, name='add'),
-    url(r'^(?P<coach_id>\d+)/delete/$', coach_delete, name="delete"),
+    url(r'^$', CoachList.as_view(), name='coaches'),
+    url(r'^(?P<pk>\d+)/$', CoachDetail.as_view(), name='coach'),
+    url(r'^(?P<pk>\d+)/edit/$', CoachUpdate.as_view(), name="edit"),
+    url(r'^add/$', CoachCreate.as_view(), name='add'),
+    url(r'^(?P<pk>\d+)/delete/$', CoachDelete.as_view(), name="delete"),
 )

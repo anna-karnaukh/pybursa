@@ -5,14 +5,14 @@
         <table class="table">
         <thead>
           <tr>
-            <th>№</th>
+            <th>ID</th>
             <th>Название</th>
             <th>Дата начала</th>
             <th>Дата завершения</th>
           </tr>
         </thead>
         <tbody>
-        {% for course in courses %}
+        {% for course in object_list %}
           <tr>
             <td>{{ course.id }}</td>
             <td><a href="{% url 'courses:course' course.id%}">

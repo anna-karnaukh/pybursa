@@ -1,8 +1,11 @@
 <div>
     <form>
-        <button type="submit" formaction="{% url edit_url  item_id %}">
+    <button type="submit" formaction="{% url edit_url  item_id %}">
         Edit</button>
-        <button type="submit" formaction="{% url delete_url item_id %}">
+    </form>
+    <form method="POST" action="{% url delete_url item_id %}">
+    	{% csrf_token %}
+        <button type="submit">
         Delete</button>
     </form>
 </div>

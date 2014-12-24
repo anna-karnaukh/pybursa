@@ -1,50 +1,40 @@
 from django import forms 
-from django.shortcuts import render, redirect, get_object_or_404
 from courses.models import Course
-
-def courses_list(request):
-    courses = Course.objects.all()
-    return render(request, 'courses/courses.html', {'courses': courses})
-
-
-def courses_item(request, course_id):
-    course = Course.objects.get(id=course_id)
-    return render(request, 'courses/course.html', {'course': course})
+from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
 class CourseModelForm(forms.ModelForm):
+    error_css_class = 'errorList'
     class Meta:
         model = Course
 
 
-def course_edit(request, course_id):
-    course= Course.objects.get(id=course_id)
-    if request.method == 'POST':
-        form = CourseModelForm(request.POST, instance=course)
-        if form.is_valid():
-            course = form.save()
-            return redirect('/courses', course_id)
-        else:
-            return render(request, 'courses/edit.html',{'form': form})
-    else:
-        form = CourseModelForm(instance=course)
-        return render(request, 'courses/edit.html', {'form': form})
+class CourseList(ListView):
+    model = Course
+    template_name = "courses/courses.html"
 
 
-def course_add(request):
-    if request.method == 'POST':
-        form = CourseModelForm(request.POST)
-        if form.is_valid():
-            course = form.save()
-            return redirect('/courses')
-        else: 
-            return render(request, 'courses/edit.html',{'form': form})
-    else:
-        form = CourseModelForm()
-        return render(request, 'courses/edit.html',{'form': form})
+class CourseDetail(DetailView):
+    model = Course
+    template_name = "courses/course.html"
 
 
-def course_delete(request, course_id):
-    course = get_object_or_404(Course, id=course_id)
-    course.delete()
-    return redirect('/courses')
+class CourseUpdate(UpdateView):
+    model = Course
+    template_name = "courses/edit.html"
+    success_url = "/courses"
+
+
+class CourseCreate(CreateView):
+    model = Course
+    template_name = "courses/edit.html"
+    success_url = "/courses"
+
+
+class CourseDelete(DeleteView):
+    model = Course
+    template_name = "courses/edit.html"
+    success_url = "/courses"
+    

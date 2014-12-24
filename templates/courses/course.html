@@ -1,13 +1,13 @@
 {% extends "courses/courses_base.html"%}
-{% block title %}{{ course.get_technology_choice_display }}{% endblock %}
+{% block title %}{{ object.get_technology_choice_display }}{% endblock %}
 {% block content %}
-	{% include "h1.html" with page_name="Курс:" h_data=course.get_technology_choice_display %}
+	{% include "h1.html" with page_name="Курс:" h_data=object.get_technology_choice_display %}
     <ul class="list-group">
-          <li class="list-group-item">Описание: {{ course.description }}</li>
-          <li class="list-group-item">Преподаватель: {{ course.teacher.surname }} {{ course.teacher.name }}</li>
-          <li class="list-group-item">Ассистент: {{ course.assistant.surname }} {{ course.assistant.name }}</li>
-          <li class="list-group-item">Место встречи: {{ course.venue }}</li>
+          <li class="list-group-item">Описание: {{ object.description }}</li>
+          <li class="list-group-item">Преподаватель: {{ object.teacher.surname }} {{ object.teacher.name }}</li>
+          <li class="list-group-item">Ассистент: {{ object.assistant.surname }} {{ object.assistant.name }}</li>
+          <li class="list-group-item">Место встречи: {{ object.venue }}</li>
     </ul>
-     {% include "edit_delete_buttons.html" with edit_url="courses:edit" delete_url="courses:delete" item_id=course.id %}
+     {% include "edit_delete_buttons.html" with edit_url="courses:edit" delete_url="courses:delete" item_id=object.id %}
 
 {% endblock %}

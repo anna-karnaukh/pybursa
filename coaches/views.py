@@ -1,15 +1,8 @@
-from django.shortcuts import render, redirect, get_object_or_404
 from django import forms
 from coaches.models import Coach
-
-def coaches_list(request):
-    coaches = Coach.objects.all()
-    return render(request, 'coaches/coaches.html', {'coaches': coaches})
-
-
-def coaches_item(request, coach_id):
-    coach = Coach.objects.get(id=coach_id)
-    return render(request, 'coaches/coach.html', {'coach': coach})
+from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
 class CoachModelForm(forms.ModelForm):
@@ -18,34 +11,29 @@ class CoachModelForm(forms.ModelForm):
         model = Coach
 
 
-def coach_edit(request, coach_id):
-    coach = Coach.objects.get(id=coach_id)
-    if request.method == 'POST':
-        form = CoachModelForm(request.POST, instance=coach)
-        if form.is_valid():
-            coach = form.save()
-            return redirect('/coaches', coach_id)
-        else:
-            return render(request, 'coaches/edit.html',{'form': form})
-    else:
-        form = CoachModelForm(instance=coach)
-        return render(request, 'coaches/edit.html', {'form': form})
+class CoachList(ListView):
+    model = Coach
+    template_name = "coaches/coaches.html"
 
 
-def coach_add(request):
-    if request.method == 'POST':
-        form = CoachModelForm(request.POST)
-        if form.is_valid():
-            coach = form.save()
-            return redirect('/coaches')
-        else: 
-            return render(request, 'coaches/edit.html',{'form': form})
-    else:
-        form = CoachModelForm()
-        return render(request, 'coaches/edit.html',{'form': form})
+class CoachDetail(DetailView):
+    model = Coach
+    template_name = "coaches/coach.html"
 
 
-def coach_delete(request, coach_id):
-    coach = get_object_or_404(Coach, id=coach_id)
-    coach.delete()
-    return redirect('/coaches')
+class CoachUpdate(UpdateView):
+    model = Coach
+    template_name = "coaches/edit.html"
+    success_url = "/coaches"
+
+
+class CoachCreate(CreateView):
+    model = Coach
+    template_name = "coaches/edit.html"
+    success_url = "/coaches"
+
+
+class CoachDelete(DeleteView):
+    model = Coach
+    template_name = "coaches/edit.html"
+    success_url = "/coaches"

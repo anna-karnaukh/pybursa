@@ -3,7 +3,7 @@
 {% block content %}
   {% include "h1.html" with page_name="Тренеры PyBursa" %}
         <ol>
-        {% for coach in coaches %}
+        {% for coach in object_list %}
           <li>
             <a href="{% url 'coaches:coach' coach.id %}">
             {{ coach.surname }} {{ coach.name }}

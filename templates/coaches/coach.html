@@ -1,13 +1,13 @@
 {% extends "coaches/coaches_base.html"%}
-{% block title %}{{ coach.surname }} {{ coach.name }}{% endblock %}
+{% block title %}{{ object.surname }} {{ object.name }}{% endblock %}
 
 {% block content %}
-	{% include "h1.html" with page_name=coach.get_coach_type_display h_data=coach %}
+	{% include "h1.html" with page_name=object.get_coach_type_display h_data=coach %}
         <ul class="list-group">
-          <li class="list-group-item">Email: {{ coach.email }}</li>
-          <li class="list-group-item">Телефон: {{ coach.phone }}</li>
-          <li class="list-group-item">Должность: {{ coach.get_coach_type_display }}</li>
-          <li class="list-group-item">Курс: {{ coach.course_name }}</li>
+          <li class="list-group-item">Email: {{ object.email }}</li>
+          <li class="list-group-item">Телефон: {{ object.phone }}</li>
+          <li class="list-group-item">Должность: {{ object.get_coach_type_display }}</li>
+          <li class="list-group-item">Курс: {{ object.course_name }}</li>
         </ul>
-        {% include "edit_delete_buttons.html" with edit_url="coaches:edit" delete_url="coaches:delete" item_id=coach.id %}
+        {% include "edit_delete_buttons.html" with edit_url="coaches:edit" delete_url="coaches:delete" item_id=object.id %}
 {% endblock %}
