@@ -1,7 +1,9 @@
 {% extends "students/students_base.html"%}
+{% load i18n %}
 
 {% block content %}
-        {% include "h1.html" with page_name="Список студентов" %}
+        {% trans 'Student List' as name %}
+        {% include "h1.html" with page_name=name %}
         <ul class="list-group">
         {% for student in students %}
           <li class="list-group-item">

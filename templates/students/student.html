@@ -1,12 +1,14 @@
 {% extends "students/students_base.html"%}
+{% load i18n %}
 {% block title %}{{ student.surname }} {{ student.name }}{% endblock %}
 {% block content %}
-	{% include "h1.html" with page_name="Студент:" h_data=student%}
+	{% trans 'Student' as name %}
+	{% include "h1.html" with page_name=name h_data=student%}
         <ul class="list-group">
-          <li class="list-group-item">Email: {{ student.email }}</li>
-          <li class="list-group-item">Телефон: {{ student.phone }}</li>
-          <li class="list-group-item">Пакет: {{ student.get_package_choice_display}}</li>
-          {# <li class="list-group-item">Рейтинг: 1</li> #}
+          <li class="list-group-item">{% trans "Email" %}: {{ student.email }}</li>
+          <li class="list-group-item">{% trans "Phone" %}: {{ student.phone }}</li>
+          <li class="list-group-item">{% trans "Package" %}: {{ student.get_package_choice_display}}</li>
+          {# <li class="list-group-item">{% trans "Rating" %}: 1</li> #}
         </ul>
         {% include "edit_delete_buttons.html" with edit_url="students:edit" delete_url="students:delete" item_id=student.id %}
 {% endblock %}

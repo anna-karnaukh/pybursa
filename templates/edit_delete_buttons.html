@@ -1,11 +1,12 @@
+{% load i18n %}
 <div>
     <form>
     <button type="submit" formaction="{% url edit_url  item_id %}">
-        Edit</button>
+        {% trans 'Edit' %}</button>
     </form>
     <form method="POST" action="{% url delete_url item_id %}">
     	{% csrf_token %}
         <button type="submit">
-        Delete</button>
+        {% trans 'Delete' %}</button>
     </form>
 </div>

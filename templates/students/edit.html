@@ -1,7 +1,9 @@
 {% extends "students/students_base.html"%}
-{% block title %}Добавление или редактирование сущности{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Add/Edit Student" %}{% endblock %}
 {% block content %}
-	{% include "h1.html" with page_name='Добавление студента' %}
+	{% trans 'Edit Student' as name %}
+	{% include "h1.html" with page_name=name %}
 
 	<form method='post'>
 		{% csrf_token %}

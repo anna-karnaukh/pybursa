@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}Contact us{% endblock %}
+
+{% block header %}
+    {% include "header.html" with active_contact="class='active'" %}
+{% endblock %}
+{% block content %}
+    {% include "h1.html" with page_name='Contact us' %}
+    
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+
+    <form method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type='submit' />
+    </form>
+{% endblock %}

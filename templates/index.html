@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block header %}
     {% include "header.html" %}
@@ -7,7 +8,8 @@
 
 {% block content %}
       <div class="starter-template">
-        {% include "h1.html" with page_name="Курсы по программированию" %}
+        {% trans 'IT courses' as name %}
+        {% include "h1.html" with page_name=name %}
         <img src="{% static "dist/images/muzhik-bleat.jpg" %}" />
       </div>
 {% endblock %}
