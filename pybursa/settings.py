@@ -51,7 +51,8 @@ INSTALLED_APPS = (
     'students',
     'courses',
     'coaches',
-    #''
+    'debug_toolbar',
+    'django_extensions',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -100,3 +101,43 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGGING = {
+    'version': 1,
+    'formatters': {
+        'verbose': {
+            'format': '%(asctime)s %(module)s %(levelname)s : %(message)s',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'formatter': 'verbose',
+            'filename': os.path.join(BASE_DIR,'debug.log'),
+        }, 
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'pybursa': {
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+        },
+        'students': {
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+        },
+        'coaches': {
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+        },
+        'courses': {
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+        },
+    },
+}

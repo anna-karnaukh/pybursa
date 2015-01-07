@@ -4,6 +4,10 @@ from django.forms.models import model_to_dict
 from students.models import Student, Dossier
 from courses.models import Course
 
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 def students_list(request):
     students = Student.objects.all()
@@ -27,6 +31,7 @@ def student_edit(request, student_id):
         form = StudentForm(request.POST, instance = student)
         if form.is_valid():
             student = form.save()
+            logger.info('Student with id %s changed' % student_id)
             return redirect('/students')
     form = StudentForm(instance = student)
     return render(request, 'students/edit.html',{'form': form})
@@ -37,6 +42,7 @@ def student_add(request):
         form = StudentForm(request.POST)
         if form.is_valid():
             student = form.save()
+            logger.info('Created new student')
             return redirect('/students')
         return render(request, 'students/edit.html',{'form': form})
     form = StudentForm()

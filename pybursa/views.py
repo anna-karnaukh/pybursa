@@ -9,6 +9,9 @@ from django.utils.translation import ugettext_lazy as _
 from coaches.models import Coach
 from students.models import Student
 
+import logging
+logger = logging.getLogger(__name__)
+
 
 class ContactForm(forms.Form):
     theme = forms.CharField(label=_("Theme"))
@@ -20,6 +23,7 @@ class ContactForm(forms.Form):
                                      empty_label=None, label=_("Student"))
     text = forms.CharField(widget=forms.Textarea(), label=_("Text"))
     email = forms.EmailField(label=_("Email"))
+
 
 class ContactView(FormView):
     form_class = ContactForm
@@ -37,4 +41,5 @@ class ContactView(FormView):
         send_mail(theme, mail_body, email, ['to@example.com'],
                   fail_silently=False)
         messages.success(self.request, _('Message successfully sent'))
+        logger.info('Message successfully sent')
         return redirect('contact')
